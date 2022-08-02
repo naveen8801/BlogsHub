@@ -23,7 +23,7 @@ export default function NavBar() {
   return (
     <div className="navbar">
       <Typography variant="h4" className="title">
-        Blog<span className="span-title">Hub</span>
+        Blogs<span className="span-title">Hub</span>
       </Typography>
       <div>
         <ul className="ul">
@@ -46,7 +46,7 @@ export default function NavBar() {
             Contact Us
           </li>
           <li onClick={(e) => router.push('/login')} className="li">
-            <Button className="btn">Sign In</Button>
+            <Button className="btn">Log In</Button>
           </li>
         </ul>
       </div>
