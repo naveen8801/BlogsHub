@@ -11,8 +11,10 @@ export default function NavBar() {
     const path = router?.pathname;
     if (path.indexOf('/blogs') !== -1) {
       setActive(2);
-    } else if (path.indexOf('/contact') !== -1) {
+    } else if (path.indexOf('/createBlog') !== -1) {
       setActive(3);
+    } else if (path.indexOf('/contact') !== -1) {
+      setActive(4);
     } else if (path.indexOf('/blog') !== -1) {
       setActive(0);
     } else {
@@ -40,8 +42,14 @@ export default function NavBar() {
             Blogs
           </li>
           <li
-            onClick={(e) => router.push('/contact')}
+            onClick={(e) => router.push('/createBlog')}
             className={active === 3 ? `li-active` : 'li'}
+          >
+            Create Blog
+          </li>
+          <li
+            onClick={(e) => router.push('/contact')}
+            className={active === 4 ? `li-active` : 'li'}
           >
             Contact Us
           </li>
