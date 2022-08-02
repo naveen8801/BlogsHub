@@ -6,7 +6,7 @@ export default function LoginSignin() {
       <Head>
         <title>BlogsHub | Login</title>
       </Head>
-      Login/SignIn
+      Login/Sign In
     </div>
   );
 }
