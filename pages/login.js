@@ -1,3 +1,12 @@
+import Head from 'next/head';
+
 export default function LoginSignin() {
-  return <div>Login/SignIn</div>;
+  return (
+    <div>
+      <Head>
+        <title>BlogsHub | Login</title>
+      </Head>
+      Login/SignIn
+    </div>
+  );
 }

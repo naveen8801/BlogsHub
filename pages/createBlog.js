@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { Editor } from 'react-draft-wysiwyg';
+import Head from 'next/head';
 import { EditorState, convertToRaw } from 'draft-js';
 import dynamic from 'next/dynamic';
 import { Button } from '@material-ui/core';
@@ -22,6 +22,9 @@ export default function CreateBlog(props) {
 
   return (
     <div className="create-blog">
+      <Head>
+        <title>BlogsHub | Create</title>
+      </Head>
       <form className="form">
         <input className="input" type="text" placeholder="Blog Title" />
         <div className="editor-wrapper">
