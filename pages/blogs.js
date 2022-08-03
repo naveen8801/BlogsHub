@@ -5,11 +5,13 @@ import { convertFromRaw, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 
 export default function AllBlogs({ blogs }) {
+  
+  const convertToHtml = (raw) => {
+    return stateToHTML(convertFromRaw(JSON.parse(raw)));
+  };
+
   if (blogs && blogs.length > 0) {
-    let ele = blogs[0];
-    let data = JSON.parse(ele.content);
-    let html = stateToHTML(convertFromRaw(data));
-    console.log(html);
+    console.log(convertToHtml(blogs[0].content));
   }
 
   return (
