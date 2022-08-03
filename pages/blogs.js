@@ -3,23 +3,33 @@ import Head from 'next/head';
 import { toast } from 'react-toastify';
 import { convertFromRaw, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
+import BlogCard from '../components/BlogCard/BlogCard';
 
 export default function AllBlogs({ blogs }) {
-  
   const convertToHtml = (raw) => {
     return stateToHTML(convertFromRaw(JSON.parse(raw)));
   };
 
-  if (blogs && blogs.length > 0) {
-    console.log(convertToHtml(blogs[0].content));
-  }
+  // if (blogs && blogs.length > 0) {
+  //   console.log(convertToHtml(blogs[0].content));
+  // }
 
   return (
-    <div>
+    <div className="blog-section">
       <Head>
         <title>BlogsHub | Blogs</title>
       </Head>
-      All Posts comes here
+      {blogs &&
+        blogs.map((item, i) => (
+          <BlogCard
+            id={item._id}
+            key={i}
+            title={item.title}
+            created_at={item.created_at}
+            author={item.author}
+            tags={item.tags}
+          />
+        ))}
     </div>
   );
 }
