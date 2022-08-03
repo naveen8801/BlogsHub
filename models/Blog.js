@@ -1,4 +1,5 @@
 import { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 const BlogSchema = new Schema({
   title: {
@@ -24,6 +25,6 @@ const BlogSchema = new Schema({
   },
 });
 
-const Blog = mongoose.model('Blogs', BlogSchema);
+const Blog = mongoose.models.Blogs || mongoose.model('Blogs', BlogSchema);
 
 export default Blog;

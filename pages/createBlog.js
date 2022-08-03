@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { Button } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -46,17 +47,22 @@ export default function CreateBlog(props) {
     setTags(tmp);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!editorState.getCurrentContent().hasText()) {
       toast.error(`Blog Content Required`);
       return;
-    }
+    } 
     if (!title) {
       toast.error(`Title is required`);
       return;
     }
     const data = { title: title, tags: tags, content: editorData };
-    console.log(data);
+    try {
+      const res = await axios.post('/api/blog', data);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
