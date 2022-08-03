@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import { EditorState, convertToRaw } from 'draft-js';
 import dynamic from 'next/dynamic';
-import { Button, Chip, Avatar } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 import { toast } from 'react-toastify';
 
