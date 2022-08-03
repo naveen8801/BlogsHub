@@ -56,7 +56,11 @@ export default function CreateBlog(props) {
       toast.error(`Title is required`);
       return;
     }
-    const data = { title: title, tags: tags, content: editorData };
+    const data = {
+      title: title,
+      tags: tags,
+      content: JSON.stringify(editorData),
+    };
     try {
       const res = await axios.post('/api/blog', data);
       if (res.data) {
