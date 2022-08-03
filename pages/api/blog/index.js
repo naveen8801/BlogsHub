@@ -20,9 +20,7 @@ export default async function handler(req, res) {
         });
       } else if (req.method === 'GET') {
         const blogs = await Blog.find();
-        res
-          .status(200)
-          .json({ msg: 'Database Connecion Successfull', data: blogs });
+        res.status(200).json({ msg: '', data: blogs });
       }
     } else {
       res.status(500).json({ msg: 'Database Connecion Error' });

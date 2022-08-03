@@ -51,7 +51,7 @@ export default function CreateBlog(props) {
     if (!editorState.getCurrentContent().hasText()) {
       toast.error(`Blog Content Required`);
       return;
-    } 
+    }
     if (!title) {
       toast.error(`Title is required`);
       return;
@@ -59,9 +59,11 @@ export default function CreateBlog(props) {
     const data = { title: title, tags: tags, content: editorData };
     try {
       const res = await axios.post('/api/blog', data);
-      console.log(res);
+      if (res.data) {
+        toast.success(res.data.msg);
+      }
     } catch (err) {
-      console.log(err);
+      toast.error(err.message);
     }
   };
 
