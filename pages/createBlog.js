@@ -4,6 +4,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import dynamic from 'next/dynamic';
 import { Button, Chip, Avatar } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
+import { toast } from 'react-toastify';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -45,13 +46,32 @@ export default function CreateBlog(props) {
     setTags(tmp);
   };
 
+  const handleSubmit = () => {
+    if (!editorState.getCurrentContent().hasText()) {
+      toast.error(`Blog Content Required`);
+      return;
+    }
+    if (!title) {
+      toast.error(`Title is required`);
+      return;
+    }
+    const data = { title: title, tags: tags, content: editorData };
+    console.log(data);
+  };
+
   return (
     <div className="create-blog">
       <Head>
         <title>BlogsHub | Create</title>
       </Head>
       <form className="form">
-        <input className="input" type="text" placeholder="Blog Title" />
+        <input
+          className="input"
+          type="text"
+          placeholder="Blog Title"
+          value={title}
+          onChange={(e) => setTitile(e.target.value.trim())}
+        />
         <div className="chips-wrapper">
           {tagsOptions &&
             tagsOptions.map((item, i) => (
@@ -77,7 +97,9 @@ export default function CreateBlog(props) {
             onEditorStateChange={handleEditorChange}
           />
         </div>
-        <Button className="btn">Submit</Button>
+        <Button className="btn" onClick={handleSubmit}>
+          Submit
+        </Button>
       </form>
     </div>
   );
