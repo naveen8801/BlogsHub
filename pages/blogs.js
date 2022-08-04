@@ -6,9 +6,7 @@ import { stateToHTML } from 'draft-js-export-html';
 import BlogCard from '../components/BlogCard/BlogCard';
 
 export default function AllBlogs({ blogs }) {
-  const convertToHtml = (raw) => {
-    return stateToHTML(convertFromRaw(JSON.parse(raw)));
-  };
+
 
   // if (blogs && blogs.length > 0) {
   //   console.log(convertToHtml(blogs[0].content));

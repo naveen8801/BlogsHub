@@ -82,7 +82,7 @@ export default function CreateBlog(props) {
           type="text"
           placeholder="Blog Title"
           value={title}
-          onChange={(e) => setTitile(e.target.value.trim())}
+          onChange={(e) => setTitile(e.target.value)}
         />
         <div className="chips-wrapper">
           {tagsOptions &&

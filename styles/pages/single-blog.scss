@@ -1,0 +1,38 @@
+.single-blog-section {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 8px;
+
+  .header {
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 0 1rem;
+
+    .title {
+      color: black;
+      text-align: center;
+      margin: 0.5rem 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+    }
+
+    .info {
+      font-family: 'Source Sans Pro', sans-serif;
+      color: black;
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: calc(100vh - 270px);
+    overflow-y: auto;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+  }
+}
