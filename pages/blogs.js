@@ -6,8 +6,6 @@ import { stateToHTML } from 'draft-js-export-html';
 import BlogCard from '../components/BlogCard/BlogCard';
 
 export default function AllBlogs({ blogs }) {
-
-
   // if (blogs && blogs.length > 0) {
   //   console.log(convertToHtml(blogs[0].content));
   // }
@@ -34,7 +32,13 @@ export default function AllBlogs({ blogs }) {
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get('http://localhost:3001/api/blog');
+    let url;
+    if (process.env.ENV === 'DEV') {
+      url = 'http://localhost:3001/api/blog';
+    } else {
+      url = 'https://blogs-hub-naveen8801.vercel.app/api/blog';
+    }
+    const res = await axios.get(url);
     if (res.data) {
       return {
         props: {

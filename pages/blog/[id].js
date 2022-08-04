@@ -54,8 +54,13 @@ export default function Blog({ blog }) {
 export async function getServerSideProps(context) {
   try {
     const { id } = context.params;
-    const res = await axios.get(`http://localhost:3001/api/blog/${id}`);
-    console.log(res.data.data);
+    let url;
+    if (process.env.ENV === 'DEV') {
+      url = `http://localhost:3001/api/blog/${id}`;
+    } else {
+      url = `https://blogs-hub-naveen8801.vercel.app/api/blog/${id}`;
+    }
+    const res = await axios.get(url);
     if (res.data) {
       return {
         props: {
