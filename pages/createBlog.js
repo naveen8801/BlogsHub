@@ -28,6 +28,7 @@ export default function CreateBlog(props) {
   );
   const [title, setTitile] = useState('');
   const [tags, setTags] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   function handleEditorChange(editorState) {
     setEditorState(editorState);
@@ -48,12 +49,15 @@ export default function CreateBlog(props) {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     if (!editorState.getCurrentContent().hasText()) {
       toast.error(`Blog Content Required`);
+      setLoading(false);
       return;
     }
     if (!title) {
       toast.error(`Title is required`);
+      setLoading(false);
       return;
     }
     const data = {
@@ -69,6 +73,7 @@ export default function CreateBlog(props) {
     } catch (err) {
       toast.error(err.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -109,7 +114,7 @@ export default function CreateBlog(props) {
             onEditorStateChange={handleEditorChange}
           />
         </div>
-        <Button className="btn" onClick={handleSubmit}>
+        <Button disabled={loading} className="btn" onClick={handleSubmit}>
           Submit
         </Button>
       </form>
