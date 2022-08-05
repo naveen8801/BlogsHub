@@ -26,7 +26,7 @@ export default function BlogCard(props) {
         Read More <ArrowForwardIcon style={{ margin: '0.2rem' }} />
       </div>
       <div className="footer">
-        <Typography className="text" variant="h7">
+        <Typography className="text" variant="h6">
           Author - {' ' + author}
         </Typography>
         <Typography className="text" variant="h7">

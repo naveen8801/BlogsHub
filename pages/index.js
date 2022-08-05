@@ -13,14 +13,6 @@ export default function Home() {
           blogs. Login to start writing your blogs
         </Typography>
       </div>
-      <div className="featured-div">
-        <Typography variant="h4" className="heading">
-          Featured Blogs
-        </Typography>
-        <div className="featured-content">
-          <em>No Content </em>
-        </div>
-      </div>
     </div>
   );
 }
