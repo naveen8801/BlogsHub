@@ -9,6 +9,10 @@ export default function AllBlogs({ blogs }) {
   // if (blogs && blogs.length > 0) {
   //   console.log(convertToHtml(blogs[0].content));
   // }
+  console.log(blogs);
+  if (!blogs) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="blog-section">
