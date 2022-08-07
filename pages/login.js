@@ -115,9 +115,7 @@ export default function LoginSignin() {
       setSignUpData({ ...signUpData, [name]: value });
     }
   };
-
-  console.log(signUpData);
-
+  
   return (
     <div className="login">
       <Head>

@@ -1,7 +1,10 @@
 import NavBar from '../NavBar/NavBar';
 import Head from 'next/head';
+import { useSession } from 'next-auth/react';
 
 export default function Layout({ children }) {
+  const { data: session, status } = useSession();
+
   return (
     <div className="layout">
       <Head>
@@ -12,8 +15,23 @@ export default function Layout({ children }) {
           rel="stylesheet"
         />
       </Head>
-      <NavBar />
-      <main>{children}</main>
+      {status === 'loading' ? (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          Loading..
+        </div>
+      ) : (
+        <>
+          <NavBar />
+          <main>{children}</main>
+        </>
+      )}
     </div>
   );
 }
