@@ -30,9 +30,9 @@ export async function getServerSideProps() {
   try {
     let url;
     if (process.env.ENV === 'DEV') {
-      url = 'http://localhost:3001/api/blog';
+      url = 'http://localhost:3001/api/blogs';
     } else {
-      url = 'https://blogs-hub-naveen8801.vercel.app/api/blog';
+      url = 'https://blogs-hub-naveen8801.vercel.app/api/blogs';
     }
     const res = await axios.get(url);
     if (res.data) {

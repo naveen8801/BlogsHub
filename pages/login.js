@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Button } from '@material-ui/core';
+import axios from 'axios';
+import { signIn } from 'next-auth/react';
 
 export default function LoginSignin() {
   const [current, setCurrent] = useState(0);
@@ -44,14 +46,23 @@ export default function LoginSignin() {
       return;
     }
     const data = { email: email.trim(), password: password.trim() };
-    console.log(data);
+    const res = await signIn('credentials', {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+    if (res.error) {
+      toast.error(res.error);
+    }
+    setLoading(false);
+
     // try {
-    //   const res = await axios.post('/api/contact-us', data);
+    //   const res = await axios.post('/api/auth/sign-in', data);
     //   if (res.data) {
     //     toast.success(res.data.msg);
     //   }
     // } catch (err) {
-    //   toast.error(err.message);
+    //   toast.error(err.response.data.msg);
     // }
     setLoading(false);
   };
@@ -85,15 +96,14 @@ export default function LoginSignin() {
       return;
     }
     const data = { name: name, email: email.trim(), password: password.trim() };
-    console.log(data);
-    // try {
-    //   const res = await axios.post('/api/contact-us', data);
-    //   if (res.data) {
-    //     toast.success(res.data.msg);
-    //   }
-    // } catch (err) {
-    //   toast.error(err.message);
-    // }
+    try {
+      const res = await axios.post('/api/auth/sign-up', data);
+      if (res.data) {
+        toast.success(res.data.msg);
+      }
+    } catch (err) {
+      toast.error(err.response.data.msg);
+    }
     setLoading(false);
   };
 
@@ -146,7 +156,11 @@ export default function LoginSignin() {
               onChange={handleChange}
               value={signInData.password}
             />
-            <Button className="btn" onClick={handleSubmitSignIn}>
+            <Button
+              className="btn"
+              onClick={handleSubmitSignIn}
+              disabled={loading}
+            >
               Sign In
             </Button>
           </form>
@@ -176,7 +190,11 @@ export default function LoginSignin() {
               onChange={handleChange}
               value={signUpData.password}
             />
-            <Button className="btn" onClick={handleSubmitSignUp}>
+            <Button
+              className="btn"
+              onClick={handleSubmitSignUp}
+              disabled={loading}
+            >
               Sign Up
             </Button>
           </form>

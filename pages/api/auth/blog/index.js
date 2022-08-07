@@ -1,6 +1,6 @@
 import moment from 'moment';
-import Blog from '../../../models/Blog';
-import { connectToDB } from '../../../utils/connectionDB';
+import Blog from '../../../../models/Blog';
+import { connectToDB } from '../../../../utils/connectionDB';
 
 export default async function handler(req, res) {
   try {
@@ -18,9 +18,6 @@ export default async function handler(req, res) {
         res.status(200).json({
           msg: 'Blog Published Successfull',
         });
-      } else if (req.method === 'GET') {
-        const blogs = await Blog.find();
-        res.status(200).json({ msg: '', data: blogs.reverse() });
       }
     } else {
       res.status(500).json({ msg: 'Database Connecion Error' });
