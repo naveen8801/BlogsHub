@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import 'nprogress/nprogress.css';
+import { SessionProvider } from 'next-auth/react';
 
 NProgress.configure({
   minimum: 0.3,
@@ -20,10 +21,12 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <ToastContainer position="top-right" />
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={pageProps.session}>
+      <Layout>
+        <ToastContainer position="top-right" />
+        <Component {...pageProps} />
+      </Layout>
+    </SessionProvider>
   );
 }
 

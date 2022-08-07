@@ -2,8 +2,11 @@ import { Typography, Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Link } from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function NavBar() {
+  const { data: session, status } = useSession();
+  console.log(session);
   const router = useRouter();
   const [active, setActive] = useState(1);
 

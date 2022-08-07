@@ -21,12 +21,11 @@ export default NextAuth({
               credentials.password,
               user.password
             );
-            console.log(res);
             if (!res) {
               //   res.status(404).json({ msg: 'Wrong Credentials' });
               throw new Error('Invalid Credentials !');
             } else {
-              return { email: user.email };
+              return user;
             }
           } else {
             // res.status(404).json({ msg: 'No User Found' });
@@ -36,4 +35,18 @@ export default NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async session({ session, user, token }) {
+      session.user.id = token.id;
+      session.user.name = token.name;
+      session.user.email = token.email;
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        token.id = user._id;
+      }
+      return token;
+    },
+  },
 });
