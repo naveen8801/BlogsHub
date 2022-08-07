@@ -1,6 +1,6 @@
 import { connectToDB } from '../../../utils/connectionDB';
 import moment from 'moment';
-import User from '../../../models/user';
+import User from '../../../models/User';
 import { hasPassword } from '../../../utils/auth';
 
 export default async function handler(req, res) {
