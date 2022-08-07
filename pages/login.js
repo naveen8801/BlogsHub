@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 export default function LoginSignin() {
+  const router = useRouter();
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
   const [signInData, setSignInData] = useState({ email: '', password: '' });
@@ -54,6 +56,7 @@ export default function LoginSignin() {
     if (res.error) {
       toast.error(res.error);
     }
+    router.push('/');
     setLoading(false);
 
     // try {
@@ -115,7 +118,7 @@ export default function LoginSignin() {
       setSignUpData({ ...signUpData, [name]: value });
     }
   };
-  
+
   return (
     <div className="login">
       <Head>
