@@ -70,7 +70,7 @@ export default function CreateBlog(props) {
       content: JSON.stringify(editorData),
     };
     try {
-      const res = await axios.post('/api/blog', data);
+      const res = await axios.post('/api/auth/blog', data);
       if (res.data) {
         toast.success(res.data.msg);
       }
